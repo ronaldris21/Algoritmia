@@ -73,13 +73,30 @@ int buscarPos(int clave, myreg tabla[], int tam)
 
 int borrar(int clave, myreg tabla[], int tam)
 {
-    int pos = buscarPos(clave,tabla,tam);
-    if(pos == LIBRE)
-        return 0; ///Que no lo borro
-    else
+    int pos = H(clave,tam);
+    if(tabla[pos].clave == LIBRE)
+        return 0;
+    if(tabla[pos].clave == clave)
     {
+        ///ELIMINAR DATO
         tabla[pos].clave = BORRADO;
         return 1;
+    }
+    else
+    {
+        ///Sigo buscando en las colisiones
+        for(int i=1;i<tam;i++)
+        {
+            pos = H_lineal(clave,tam,i);
+            if(tabla[pos].clave == LIBRE)
+                return 0;
+            if(clave == tabla[pos].clave)
+            {
+                ///ELIMINAR DATO
+                tabla[pos].clave = BORRADO;
+                return 1;
+            }
+        }
     }
 }
 
@@ -102,7 +119,7 @@ void imprimir(myreg tabla[], int tam)
 {
     for(int i=0; i<tam;i++)
     {
-        if(tabla[i].clave == LIBRE)
+        if(tabla[i].clave == LIBRE || tabla[i].clave == BORRADO)
             printf("%d: \tLIBRE\n",i);
         else
             printf("%d: \t%d\n",i,tabla[i].clave);
