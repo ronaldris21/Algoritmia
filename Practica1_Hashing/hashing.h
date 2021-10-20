@@ -4,13 +4,13 @@
 #define LIBRE -1
 #define BORRADO -2
 
-struct myreg{
+typedef struct myreg{
     int clave;
 
 } myreg;
 
 void inicializar(myreg tabla[], int tam);
-void insertar(myreg nuevo, myreg tabla[], int tam);
+void insertar(int nuevo, myreg tabla[], int tam);
 int buscarPos(int clave, myreg tabla[], int tam);
 int borrar(int clave, myreg tabla[], int tam);
 double factorCarga(myreg tabla[],int tam);

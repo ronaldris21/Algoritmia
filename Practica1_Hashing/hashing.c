@@ -18,7 +18,7 @@ int H_lineal(int k, int tam, int i)
     return (k+i)%tam;
 }
 
-void insertar(myreg nuevo, myreg tabla[], int tam)
+void insertar(int nuevo, myreg tabla[], int tam)
 {
     int pos = H(nuevo,tam);
     int cantColisiones=0;
@@ -103,11 +103,11 @@ void imprimir(myreg tabla[], int tam)
     for(int i=0; i<tam;i++)
     {
         if(tabla[i].clave == LIBRE)
-            printf("%d: \t\tLIBRE",i);
+            printf("%d: \tLIBRE\n",i);
         else
-            printf("%d: \t\t%d",i,tabla[pos].clave);
-
+            printf("%d: \t%d\n",i,tabla[i].clave);
     }
+     printf("\n\n");
 }
 
 
